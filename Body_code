@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地球物理通論 - 期末報告作業展示</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', 'Segoe UI', Arial, sans-serif;
+            background: radial-gradient(1200px 800px at 10% 0%, #13264a 0%, transparent 60%),
+                        radial-gradient(1200px 800px at 90% 10%, #1a3a6f 0%, transparent 55%),
+                        linear-gradient(135deg, #0b1020 0%, #141b3a 45%, #0a2a4a 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: -20% -10% auto -10%;
+            height: 60vh;
+            background: radial-gradient(60% 60% at 20% 40%, rgba(94, 231, 255, 0.18), transparent 60%),
+                        radial-gradient(60% 60% at 80% 50%, rgba(186, 120, 255, 0.16), transparent 60%);
+            filter: blur(30px);
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+            animation: aurora 16s ease-in-out infinite alternate;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out;
+            padding: 20px;
+        }
+
+        .header-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes aurora {
+            0% {
+                transform: translate3d(-4%, 0, 0) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate3d(2%, -2%, 0) scale(1.05);
+                opacity: 0.75;
+            }
+            100% {
+                transform: translate3d(6%, -3%, 0) scale(1.08);
+                opacity: 0.65;
+            }
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffffff, #a2f5ff 40%, #c1b4ff 75%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            color: #9fe7ff;
+        }
+
+        .header .description {
+            font-size: 1em;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .guide-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #5ee7ff, #7b7dff);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 6px 24px rgba(94, 231, 255, 0.35);
+        }
+
+        .guide-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(123, 125, 255, 0.45);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .featured-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(245,248,255,0.92));
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .featured-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .featured-header::before {
+            content: '🏆';
+            font-size: 1.3em;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, rgba(94, 231, 255, 0.08), rgba(123, 125, 255, 0.10));
+            padding: 22px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 17px;
+            background: linear-gradient(135deg, #5ee7ff, #7b7dff);
+            z-index: -1;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 18px 45px rgba(94, 231, 255, 0.25);
+        }
+
+        .featured-card:hover::before {
+            opacity: 1;
+        }
+
+        .featured-card h4 {
+            color: #4a7cff;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .featured-card p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        .featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a7cff;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .featured-link:hover {
+            gap: 12px;
+        }
+
+        .featured-link::after {
+            content: '→';
+        }
+
+        .controls {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            animation: fadeIn 1s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 22px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 1em;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: linear-gradient(135deg, #5ee7ff, #7b7dff);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #5ee7ff, #7b7dff);
+            color: white;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .stat-badge {
+            padding: 8px 15px;
+            background: #eef6ff;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #3b4b66;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.99), rgba(246,250,255,0.96));
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 12px 44px rgba(9, 30, 66, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #5ee7ff, #7b7dff, #b07bff);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.012);
+            box-shadow: 0 22px 60px rgba(9, 30, 66, 0.22);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .student-info h3 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .student-id {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .card-number {
+            background: linear-gradient(135deg, #5ee7ff, #7b7dff);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .submit-date {
+            color: #666;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .submit-date::before {
+            content: '📅';
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .tag.github {
+            background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .tag.gemini {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+
+        .tag.streamlit {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            color: #c2185b;
+            border: 1px solid #f48fb1;
+        }
+
+        .tag.colab {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .tag.late {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .tag.featured {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #000;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .card.featured-item {
+            border: 2px solid #ffd700;
+            background: linear-gradient(to bottom, #fffef8, white);
+        }
+
+        .card.featured-item::before {
+            height: 5px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #f8f9fa, #f1f3f4);
+            border: none;
+            border-radius: 12px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.92em;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .link-btn:hover {
+            background: linear-gradient(135deg, #5ee7ff, #7b7dff);
+            color: white;
+            transform: translateX(8px);
+            box-shadow: 0 6px 22px rgba(94, 231, 255, 0.35);
+        }
+
+        .link-btn::before {
+            content: '🔗';
+            font-size: 1.2em;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+            font-size: 1.3em;
+            grid-column: 1 / -1;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #a8edea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .audio-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .audio-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .audio-header::before {
+            content: '🎧';
+            font-size: 1.3em;
+        }
+
+        .audio-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .audio-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .audio-info .author {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .audio-info .title {
+            color: #555;
+            font-size: 1em;
+        }
+
+        .audio-player {
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .audio-player::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .audio-description {
+            color: #777;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .stats {
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">🌍</div>
+            <h1>地球物理通論 - 期末報告作業展示</h1>
+            <p class="subtitle">2025學年度期末專題成果 | 共19位學生作品</p>
+            <p class="description">探索2025地球物理課程的創新成果！學生們運用AI工具，將一學期所學轉化為生動的互動式網頁展示。</p>
+            <a href="https://eeclass.utaipei.edu.tw/sysdata/doc/a/a7e379bb681f57d2/html/final_term.html" target="_blank" class="guide-link">📋 期末報告製作說明</a>
+        </div>
+
+        <div class="featured-section">
+            <div class="featured-header">特別推薦作品</div>
+            <div class="featured-grid">
+                <div class="featured-card" onclick="scrollToStudent(12)">
+                    <h4>黃靖家</h4>
+                    <p>完整的地球物理知識整合</p>
+                    <a href="https://jinjia0618.github.io/geophysic-final-report/" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(16)">
+                    <h4>林靖融</h4>
+                    <p>優質的課程筆記呈現</p>
+                    <a href="https://rrrnnn0518-ux.github.io/finalterm_report/" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(2)">
+                    <h4>張以蓁</h4>
+                    <p>結合多媒體的創新呈現</p>
+                    <a href="https://z72123.github.io/U11104022-Final-Project-Report/#home" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(1)">
+                    <h4>林圻蓁</h4>
+                    <p>清晰的內容組織與設計</p>
+                    <a href="https://chilin2tb-stack.github.io/U11104006_final/index.html" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(10)">
+                    <h4>曾柏凱</h4>
+                    <p>精彩的週次報告整理與互動設計</p>
+                    <a href="https://tsengpokai.github.io/chimo_finalreport/" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="audio-section">
+            <div class="audio-header">語音摘要播放</div>
+            <div class="audio-content">
+                <div class="audio-info">
+                    <span class="author">張以蓁</span>
+                    <span class="title">史地生用 Python 讀懂地球新語言</span>
+                </div>
+                <audio class="audio-player" controls>
+                    <source src="https://raw.githubusercontent.com/oceanicdayi/2025_Geophysics_Final_Report/main/%E5%8F%B2%E5%9C%B0%E7%94%9F%E7%94%A8_Python_%E8%AE%80%E6%87%82%E5%9C%B0%E7%90%83%E6%96%B0%E8%AA%9E%E8%A8%80.m4a" type="audio/mp4">
+                    您的瀏覽器不支援音頻播放。
+                </audio>
+                <p class="audio-description">📝 由 NotebookLM 產生的課程摘要，結合多媒體呈現地球物理學習內容</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 搜尋學生姓名或學號...">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="github">GitHub Pages</button>
+                <button class="filter-btn" data-filter="gemini">Gemini</button>
+                <button class="filter-btn" data-filter="special">特殊平台</button>
+            </div>
+
+            <div class="stats">
+                <span class="stat-badge">總計: <span id="totalCount">19</span></span>
+                <span class="stat-badge">顯示: <span id="visibleCount">19</span></span>
+            </div>
+        </div>
+
+        <div class="cards-grid" id="cardsGrid"></div>
+    </div>
+
+    <script>
+        const students = [
+            {
+                id: 1,
+                studentId: "u11104006",
+                name: "",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://chilin2tb-stack.github.io/U11104006_final/index.html", label: "作品網站" }
+                ],
+                type: "github",
+                late: false,
+                featured: true
+            },
+            {
+                id: 2,
+                studentId: "u11104022",
+                name: "",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://z72123.github.io/U11104022-Final-Project-Report/#home", label: "作品網站" },
+                    { url: "https://github.com/z72123/U11104022-Final-Project-Report", label: "GitHub Repository" },
+                    { url: "https://gemini.google.com/share/13729133804c", label: "Gemini分享" },
+                    { url: "https://github.com/oceanicdayi/2025_Geophysics_Final_Report/blob/main/%E5%8F%B2%E5%9C%B0%E7%94%9F%E7%94%A8_Python_%E8%AE%80%E6%87%82%E5%9C%B0%E7%90%83%E6%96%B0%E8%AA%9E%E8%A8%80.m4a", label: "🎧 語音摘要 (NotebookLM)" }
+                ],
+                type: "github",
+                late: false,
+                special: ["gemini"],
+                featured: true
+            },
+            {
+                id: 3,
+                studentId: "u11210021",
+                name: "黃冠維",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://samuel10727.github.io/2025termreport-01/", label: "作品網站" }
+                ],
+                type: "github",
+                late: false
+            },
+            {
+                id: 4,
+                studentId: "u11310002",
+                name: "陳亞歆",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://yaxin06.github.io/2025_term_report_geophysics_new/", label: "作品網站" },
+                    { url: "https://github.com/yaxin06/2025_term_report_geophysics_new", label: "GitHub Repository" }
+                ],
+                type: "github",
+                late: false
+            }
+
+        ];
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        function renderCards() {
+            const grid = document.getElementById('cardsGrid');
+            let filteredStudents = students.filter(student => {
+                // 搜索過濾
+                const matchSearch = student.name.includes(searchTerm) || 
+                                  student.studentId.includes(searchTerm);
+                
+                // 類型過濾
+                let matchFilter = true;
+                if (currentFilter === 'github') {
+                    matchFilter = student.type === 'github';
+                } else if (currentFilter === 'gemini') {
+                    matchFilter = student.type === 'gemini';
+                } else if (currentFilter === 'special') {
+                    matchFilter = student.type === 'streamlit' || student.special;
+                }
+
+                return matchSearch && matchFilter;
+            });
+
+            document.getElementById('visibleCount').textContent = filteredStudents.length;
+
+            if (filteredStudents.length === 0) {
+                grid.innerHTML = '<div class="no-results">😔 沒有找到符合條件的作業</div>';
+                return;
+            }
+
+            grid.innerHTML = filteredStudents.map(student => {
+                let tags = [];
+                if (student.featured) tags.push('<span class="tag featured">⭐ 特別推薦</span>');
+                if (student.type === 'github') tags.push('<span class="tag github">GitHub Pages</span>');
+                if (student.type === 'gemini') tags.push('<span class="tag gemini">Gemini</span>');
+                if (student.type === 'streamlit') tags.push('<span class="tag streamlit">Streamlit</span>');
+                if (student.special?.includes('colab')) tags.push('<span class="tag colab">Colab</span>');
+
+                return `
+                    <div class="card ${student.featured ? 'featured-item' : ''}" id="student-${student.id}">
+                        <div class="card-header">
+                            <div class="student-info">
+                                <h3>${student.name}</h3>
+                                <div class="student-id">${student.studentId}</div>
+                            </div>
+                            <div class="card-number">${student.id}</div>
+                        </div>
+                        <div class="submit-date">${student.date}</div>
+                        <div class="tags">
+                            ${tags.join('')}
+                        </div>
+                        <div class="links">
+                            ${student.links.map(link => 
+                                `<a href="${link.url}" target="_blank" class="link-btn">${link.label}</a>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchTerm = e.target.value.trim();
+            renderCards();
+        });
+
+        // 過濾按鈕
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderCards();
+            });
+        });
+
+        // 滚动到指定学生卡片
+        function scrollToStudent(id) {
+            renderCards();
+            setTimeout(() => {
+                const element = document.getElementById(`student-${id}`);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    element.style.animation = 'pulse 1s ease-in-out 2';
+                }
+            }, 100);
+        }
+
+        // 初始渲染
+        renderCards();
+    </script>
+
+    <footer class="footer">
+        <p>🌍 作品集</p>
+        <p style="margin-top: 10px;">
+            <a href="https://github.com/""</a>
+            &nbsp;|&nbsp;
+            
+        </p>
+        <p style="margin-top: 15px; opacity: 0.6;">© 2025 All Rights Reserved</p>
+    </footer>
+</body>
+</html>
