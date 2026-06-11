@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地球物理通論 - 期末報告作業展示</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">🌍</div>
+            <h1>地球物理通論 - 期末報告作業展示</h1>
+            <p class="subtitle">2025學年度期末專題成果 | 共19位學生作品</p>
+            <p class="description">探索2025地球物理課程的創新成果！學生們運用AI工具，將一學期所學轉化為生動的互動式網頁展示。</p>
+            <a href="https://eeclass.utaipei.edu.tw/sysdata/doc/a/a7e379bb681f57d2/html/final_term.html" target="_blank" class="guide-link">📋 期末報告製作說明</a>
+        </div>
+
+        <div class="featured-section">
+            <div class="featured-header">特別推薦作品</div>
+            <div class="featured-grid">
+                <div class="featured-card" onclick="scrollToStudent(12)">
+                    <h4>黃靖家</h4>
+                    <p>完整的地球物理知識整合</p>
+                    <a href="https://jinjia0618.github.io/geophysic-final-report/" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(16)">
+                    <h4>林靖融</h4>
+                    <p>優質的課程筆記呈現</p>
+                    <a href="https://rrrnnn0518-ux.github.io/finalterm_report/" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(2)">
+                    <h4>張以蓁</h4>
+                    <p>結合多媒體的創新呈現</p>
+                    <a href="https://z72123.github.io/U11104022-Final-Project-Report/#home" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(1)">
+                    <h4>林圻蓁</h4>
+                    <p>清晰的內容組織與設計</p>
+                    <a href="https://chilin2tb-stack.github.io/U11104006_final/index.html" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+                <div class="featured-card" onclick="scrollToStudent(10)">
+                    <h4>曾柏凱</h4>
+                    <p>精彩的週次報告整理與互動設計</p>
+                    <a href="https://tsengpokai.github.io/chimo_finalreport/" target="_blank" class="featured-link" onclick="event.stopPropagation()">查看作品</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="audio-section">
+            <div class="audio-header">語音摘要播放</div>
+            <div class="audio-content">
+                <div class="audio-info">
+                    <span class="author">張以蓁</span>
+                    <span class="title">史地生用 Python 讀懂地球新語言</span>
+                </div>
+                <audio class="audio-player" controls>
+                    <source src="https://raw.githubusercontent.com/oceanicdayi/2025_Geophysics_Final_Report/main/%E5%8F%B2%E5%9C%B0%E7%94%9F%E7%94%A8_Python_%E8%AE%80%E6%87%82%E5%9C%B0%E7%90%83%E6%96%B0%E8%AA%9E%E8%A8%80.m4a" type="audio/mp4">
+                    您的瀏覽器不支援音頻播放。
+                </audio>
+                <p class="audio-description">📝 由 NotebookLM 產生的課程摘要，結合多媒體呈現地球物理學習內容</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 搜尋學生姓名或學號...">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="github">GitHub Pages</button>
+                <button class="filter-btn" data-filter="gemini">Gemini</button>
+                <button class="filter-btn" data-filter="special">特殊平台</button>
+            </div>
+
+            <div class="stats">
+                <span class="stat-badge">總計: <span id="totalCount">19</span></span>
+                <span class="stat-badge">顯示: <span id="visibleCount">19</span></span>
+            </div>
+        </div>
+
+        <div class="cards-grid" id="cardsGrid"></div>
+    </div>
+
+    <script>
+        const students = [
+            {
+                id: 1,
+                studentId: "u11104006",
+                name: "",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://chilin2tb-stack.github.io/U11104006_final/index.html", label: "作品網站" }
+                ],
+                type: "github",
+                late: false,
+                featured: true
+            },
+            {
+                id: 2,
+                studentId: "u11104022",
+                name: "",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://z72123.github.io/U11104022-Final-Project-Report/#home", label: "作品網站" },
+                    { url: "https://github.com/z72123/U11104022-Final-Project-Report", label: "GitHub Repository" },
+                    { url: "https://gemini.google.com/share/13729133804c", label: "Gemini分享" },
+                    { url: "https://github.com/oceanicdayi/2025_Geophysics_Final_Report/blob/main/%E5%8F%B2%E5%9C%B0%E7%94%9F%E7%94%A8_Python_%E8%AE%80%E6%87%82%E5%9C%B0%E7%90%83%E6%96%B0%E8%AA%9E%E8%A8%80.m4a", label: "🎧 語音摘要 (NotebookLM)" }
+                ],
+                type: "github",
+                late: false,
+                special: ["gemini"],
+                featured: true
+            },
+            {
+                id: 3,
+                studentId: "u11210021",
+                name: "黃冠維",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://samuel10727.github.io/2025termreport-01/", label: "作品網站" }
+                ],
+                type: "github",
+                late: false
+            },
+            {
+                id: 4,
+                studentId: "u11310002",
+                name: "陳亞歆",
+                date: "2025-12-24",
+                links: [
+                    { url: "https://yaxin06.github.io/2025_term_report_geophysics_new/", label: "作品網站" },
+                    { url: "https://github.com/yaxin06/2025_term_report_geophysics_new", label: "GitHub Repository" }
+                ],
+                type: "github",
+                late: false
+            }
+
+        ];
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        function renderCards() {
+            const grid = document.getElementById('cardsGrid');
+            let filteredStudents = students.filter(student => {
+                // 搜索過濾
+                const matchSearch = student.name.includes(searchTerm) || 
+                                  student.studentId.includes(searchTerm);
+                
+                // 類型過濾
+                let matchFilter = true;
+                if (currentFilter === 'github') {
+                    matchFilter = student.type === 'github';
+                } else if (currentFilter === 'gemini') {
+                    matchFilter = student.type === 'gemini';
+                } else if (currentFilter === 'special') {
+                    matchFilter = student.type === 'streamlit' || student.special;
+                }
+
+                return matchSearch && matchFilter;
+            });
+
+            document.getElementById('visibleCount').textContent = filteredStudents.length;
+
+            if (filteredStudents.length === 0) {
+                grid.innerHTML = '<div class="no-results">😔 沒有找到符合條件的作業</div>';
+                return;
+            }
+
+            grid.innerHTML = filteredStudents.map(student => {
+                let tags = [];
+                if (student.featured) tags.push('<span class="tag featured">⭐ 特別推薦</span>');
+                if (student.type === 'github') tags.push('<span class="tag github">GitHub Pages</span>');
+                if (student.type === 'gemini') tags.push('<span class="tag gemini">Gemini</span>');
+                if (student.type === 'streamlit') tags.push('<span class="tag streamlit">Streamlit</span>');
+                if (student.special?.includes('colab')) tags.push('<span class="tag colab">Colab</span>');
+
+                return `
+                    <div class="card ${student.featured ? 'featured-item' : ''}" id="student-${student.id}">
+                        <div class="card-header">
+                            <div class="student-info">
+                                <h3>${student.name}</h3>
+                                <div class="student-id">${student.studentId}</div>
+                            </div>
+                            <div class="card-number">${student.id}</div>
+                        </div>
+                        <div class="submit-date">${student.date}</div>
+                        <div class="tags">
+                            ${tags.join('')}
+                        </div>
+                        <div class="links">
+                            ${student.links.map(link => 
+                                `<a href="${link.url}" target="_blank" class="link-btn">${link.label}</a>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchTerm = e.target.value.trim();
+            renderCards();
+        });
+
+        // 過濾按鈕
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderCards();
+            });
+        });
+
+        // 滚动到指定学生卡片
+        function scrollToStudent(id) {
+            renderCards();
+            setTimeout(() => {
+                const element = document.getElementById(`student-${id}`);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    element.style.animation = 'pulse 1s ease-in-out 2';
+                }
+            }, 100);
+        }
+
+        // 初始渲染
+        renderCards();
+    </script>
+
+    <footer class="footer">
+        <p>🌍 作品集</p>
+        <p style="margin-top: 10px;">
+            <a href="https://github.com/""</a>
+            &nbsp;|&nbsp;
+            
+        </p>
+        <p style="margin-top: 15px; opacity: 0.6;">© 2025 All Rights Reserved</p>
+    </footer>
+</body>
+</html>
