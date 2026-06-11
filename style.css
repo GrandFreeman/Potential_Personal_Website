@@ -29,7 +29,7 @@
   .topmenu {
     color: lightgray;
     background: radial-gradient(200px 200px at 50% 50%, #8861a0  0%, transparent 30%);
-
+    border: none;
     padding: 10px;
     font-size: 20px;
     text-decoration:none;
