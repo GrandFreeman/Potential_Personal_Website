@@ -5,8 +5,7 @@
 }
 
 #home {
-  background:
-    radial-gradient(1200px 800px at 90% 90%, #ffffff 0%, transparent 30%), #ffd858;
+  background: #ffd858;
   font-family: 'Noto Serif TC', 'Microsoft JhengHei', 'Segoe UI', Arial, serif;
   padding-bottom: 1cm;
   margin-left: -1cm;
@@ -14,6 +13,10 @@
   margin-top: -1cm;
   padding-top: 1.5cm;
   padding-bottom: 2cm;
+  transparent 70%;
+  position: relative;
+  overflow: hidden;
+  z-index: 99;
 }
 
 header {
