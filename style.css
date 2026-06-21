@@ -4,55 +4,6 @@
   box-sizing: border-box;
 }
 
-#home {
-  background: #ffd858;
-  font-family: 'Noto Serif TC', 'Microsoft JhengHei', 'Segoe UI', Arial, serif;
-  padding-bottom: 1cm;
-  margin-left: -1cm;
-  margin-right: -1cm;
-  margin-top: -1cm;
-  padding-top: 1.5cm;
-  padding-bottom: 2cm;
-  transparent 70%;
-  position: relative;
-  overflow: hidden;
-  z-index: 99;
-}
-
-header {
-  font-size: 36px;
-  color: rgb(255, 255, 255);
-  float: left;
-  padding-left: 2cm;
-}
-.topdiv {
-  display: flex;
-  gap: 1rem;
-  float: right;
-  padding-right: 1cm;
-}
-.topmenu {
-  color: rgb(83, 83, 83);
-  background: radial-gradient(
-    200px 200px at 50% 50%,
-    #4d729c 0%,
-    transparent 30%
-  );
-  border: none;
-  padding: 10px;
-  font-size: 20px;
-  text-decoration: none;
-  border-radius: 1mm;
-  transition: 0.2s;
-}
-
-.topmenu:hover {
-  color: white;
-  background-color: #895fa1;
-  text-decoration: underline;
-  transform: translateY(-2px);
-}
-
 /*!!!!!!!!!!!!!!!!!!!!*/
 body {
   font-family:
@@ -100,6 +51,57 @@ body::after {
   pointer-events: none;
   z-index: 0;
   animation: aurora 16s ease-in-out infinite alternate;
+}
+
+#home {
+  background: #ffe75eb0;
+  font-family: 'Noto Serif TC', 'Microsoft JhengHei', 'Segoe UI', Arial, serif;
+  margin-left: -1cm;
+  margin-right: -1cm;
+  margin-top: -1cm;
+  padding-top: 1.5cm;
+  padding-bottom: 2cm;
+  position: relative;
+  overflow: hidden;
+  z-index: 99;
+}
+
+header {
+  font-style: italic;
+  font-size: 36px;
+  color: rgb(255, 187, 0);
+  float: left;
+  padding-left: 2cm;
+}
+.topdiv {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  float: right;
+  padding-right: 1cm;
+}
+.topmenu {
+  color: rgb(83, 83, 83);
+  background: radial-gradient(
+    200px 200px at 50% 50%,
+    #ffffff00 0%,
+    transparent 30%
+  );
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 1mm;
+  transition: 0.2s;
+}
+
+.topmenu:hover {
+  color: rgb(134, 134, 134);
+  background:
+    radial-gradient(200px 200px at 50% 50%, #ffb97fce 0%, transparent 30%),
+    #fff387d7;
+  text-decoration: underline;
+  transform: translateY(-2px);
 }
 
 .container {
